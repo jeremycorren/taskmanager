@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "task mgr utility",
+  "main": "server.js",
+  "scripts": {
+    "devstart": "nodemon app.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@google-cloud/datastore": "1.1.0",
+    "body-parser": "1.18.2",
+    "express": "4.15.4"
+  },
+  "devDependencies": {
+    "@google-cloud/nodejs-repo-tools": "^2.1.4",
+    "nodemon": "^1.14.11"
+  },
+  "author": "jcorren",
+  "license": "ISC"
+}

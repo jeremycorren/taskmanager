@@ -1,0 +1,56 @@
+hr {
+	width: 160px;
+}
+
+input[type=text] { 
+	width: 100px;
+	display: inline-block;
+}
+
+select {
+	width: 140px !important;
+}
+
+ul {
+	list-style: none; 
+	padding-left: 0px !important;
+}
+
+.action {
+	color: black;
+	font-weight: bold;
+}
+
+.done-true { 
+	text-decoration: line-through; 
+	color: grey; 
+}
+
+.form-group {
+	margin-bottom: 10px !important;
+}
+
+.panel {
+	display: inline-block;
+	margin-bottom: 0px !important;
+}
+
+.panel-heading {
+	background-color: white !important;
+}
+
+.panel-body {
+	background-color: #f5f5f5;
+}
+
+#archive {
+	margin-top: 10px;
+}
+
+#push-archive {
+	margin-bottom: 5px;
+}
+
+#vspace {
+	height: 15px;
+}
