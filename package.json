@@ -2,7 +2,7 @@
   "name": "todo",
   "version": "1.0.0",
   "description": "task mgr utility",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "devstart": "nodemon app.js",
     "start": "node server.js"
