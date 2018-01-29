@@ -1,0 +1,37 @@
+<!doctype html>
+<html ng-app="task-manager">
+	<head>
+		<meta charset="UTF-8">
+		<title>Task Manager</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/views/css/style.css">
+	</head>
+	<body>
+
+		<div class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<div class="navbar-brand">Task Manager</div>
+				</div>
+				<ul class="nav navbar-nav">
+					<li><a href='#!/create'>New Task</a></li>
+					<li><a href='#!/list'>My Tasks</a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="main">
+			<div ng-view></div>
+		</div>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+
+		<script src="app.js"></script>
+		<script src="services/service.js"></script>
+		<script src="controllers/create.js"></script>
+		<script src="controllers/list.js"></script>
+	</body>
+</html>

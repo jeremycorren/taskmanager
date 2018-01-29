@@ -32,18 +32,54 @@ function toDatastore (obj, nonIndexed) {
    return results;
 }
 
-function create(data, callback) {
+function formatDate(date) {
+   return date.toLocaleDateString('en-US', {
+      year: 'numeric', 
+      month: 'numeric', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric'
+   });
+
+}
+
+function update(id, data, callback) {
+   let key;
+   if (id) {
+      key = ds.key([kind, parseInt(id, 10)]);
+   } else {
+      key = ds.key(kind);
+      data.created = formatDate(new Date());
+   }
+
    const entity = {
-      key: ds.key(kind),
+      key: key,
       data: toDatastore(data, ['description'])
    }
 
-   ds.save(entity, (err) => {
+   ds.save(entity, function(err) {
       data.id = entity.key.id;
-      callback(err, err ? null : data);
+      callback(err);
+   });
+}
+
+function create(data, callback) {
+   update(null, data, callback);
+}
+
+function list(callback) {
+   let query = ds.createQuery([kind])
+      .order('created', { descending: true });
+   ds.runQuery(query, function(err, entities, nextQuery) {
+      if (err) {
+         callback(err);
+         return;
+      }
+      callback(null, entities.map(fromDatastore));
    });
 }
 
 module.exports = {
-   create
+   create,
+   list
 };
