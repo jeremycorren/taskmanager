@@ -1,10 +1,18 @@
 /**
- * Styles
+ * View styles
  */
 
-select:disabled {
+.bold {
+	font-weight: bold;
+}
+
+.grey {
 	color: grey;
 }
+
+/**
+ * Create View styles
+ */
 
 textarea {
 	resize: none;
@@ -14,10 +22,24 @@ textarea {
 	margin-bottom: 10px !important;
 }
 
-.list-item {
-	text-align: left;
-	display: block;
-	width: 210px;
+.modal-dialog {
+	width: 300px;
+}
+
+#new-task {
+	width: 160px;
+}
+
+#topic {
+	text-transform: capitalize;
+}
+
+/**
+ * List View styles
+ */
+
+.end-space {
+	margin-bottom: 10px;
 }
 
 .bold {
@@ -27,20 +49,4 @@ textarea {
 #create-link {
 	text-decoration: none;
 	font-weight: bold;
-}
-
-#detail {
-	width: 260px;
-}
-
-#new-task {
-	width: 160px;
-}
-
-#description {
-	margin-bottom: 5px;
-}
-
-#topic {
-	text-transform: capitalize;
 }

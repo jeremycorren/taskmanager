@@ -49,8 +49,8 @@ function update(id, data, callback) {
       key = ds.key([kind, parseInt(id, 10)]);
    } else {
       key = ds.key(kind);
-      data.created = formatDate(new Date());
    }
+   data.updated = formatDate(new Date());
 
    const entity = {
       key: key,
@@ -58,7 +58,6 @@ function update(id, data, callback) {
    }
 
    ds.save(entity, function(err) {
-      data.id = entity.key.id;
       callback(err);
    });
 }
@@ -67,9 +66,15 @@ function create(data, callback) {
    update(null, data, callback);
 }
 
+function _delete(data, callback) {
+   const id = data.id;
+   const key = ds.key([kind, parseInt(id, 10)]);
+   ds.delete(key, callback);
+}
+
 function list(callback) {
    let query = ds.createQuery([kind])
-      .order('created', { descending: true });
+      .order('updated', { descending: true });
    ds.runQuery(query, function(err, entities, nextQuery) {
       if (err) {
          callback(err);
@@ -81,5 +86,7 @@ function list(callback) {
 
 module.exports = {
    create,
+   update,
+   delete: _delete,
    list
 };

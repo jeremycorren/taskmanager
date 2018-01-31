@@ -1,0 +1,20 @@
+<div id="detail" class="panel panel-default">
+	<div class="panel-body">
+		<div ng-if="selected === undefined" class="text-center grey">
+			Select a task to view its detail.
+		</div>
+		<div ng-if="selected !== undefined" ng-model="taskDetail">
+			<h4 class="end-space">{{taskDetail.name}}</h4>
+			<div class="end-space">{{taskDetail.description}}</div>
+			<div class="end-space">
+				<div id="topic" class="label label-default">{{taskDetail.topic}}</div>
+			</div>
+			<button ng-click="deleteTask(taskDetail)" id="delete" class="btn btn-info btn-sm">
+				<span class="glyphicon glyphicon-trash"></span>
+			</button>
+			<a ui-sref="list.edit({id: taskDetail.id})" id="edit" class="btn btn-info btn-sm">
+				<span class="glyphicon glyphicon-edit"></span>
+			</a>
+		</div>
+	</div>
+</div>

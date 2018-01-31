@@ -3,31 +3,47 @@
  */
 
 angular.module('task-manager')
-	.controller('ListCtrl', function($scope, DataService) {
+	.controller('ListCtrl', function($scope, $state, $stateParams, $localStorage, tasks, DataService) {
 		$scope.tasks = [];
 		$scope.taskMap = {};
 		$scope.taskDetail;
-		$scope.selected = 0;
+		$scope.selected;
 
-		DataService.list()
-			.then(function(response) {
-				const tasks = response.data.tasks;
-				if (tasks.length > 0) {
-					console.log('Queried tasks');
-					$scope.taskDetail = tasks[0];
-
-					tasks.forEach(function(task) {
-						$scope.tasks.push(task);
-						$scope.taskMap[task.id] = task;
-					});
-				}
+		if (tasks.length > 0) {
+			tasks.forEach(function(task) {
+				$scope.tasks.push(task);
+				$scope.taskMap[task.id] = task;
 			});
+		}
+		$state.go('list.view');
 
-		$scope.selectDetail = function(task) {
-			$scope.taskDetail = $scope.taskMap[task.id];
+		$scope.deleteTask = function(taskToDelete) {
+			$scope.tasks = $scope.tasks.filter(function(task) {
+				return task.id != taskToDelete.id;
+			});
+			$scope.selected = undefined;
+
+			DataService.delete({ id: taskToDelete.id })
+				.then(function(res) {
+					console.log(res.data.msg);
+					delete $localStorage.tasks;
+        	$state.go('list', {}, { reload: true });
+      	})
+      	.catch(function(err) {
+      		console.log(err);
+      	});
+		}
+
+		$scope.selectDetail = function(index, task) {
+			$scope.selected = index;
+			$scope.taskDetail = task;
 		};
 
 		$scope.hasTasks = function() {
 			return $scope.tasks.length > 0;
+		}
+
+		$scope.checkSelected = function() {
+			return $scope.selected === undefined;
 		}
 	}); 

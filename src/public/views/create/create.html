@@ -1,0 +1,16 @@
+<div class="container">
+	<form id="new-task">
+		<input ng-model="name" type="text" placeholder="Add a task" class="form-control form-group"/>
+		<textarea ng-model="description" placeholder="Add a description" class="form-control form-group"></textarea>
+		<select ng-model="topic" class="form-control form-group">
+			<option value="" disabled ng-selected="topic === ''"> Select a topic </option>
+			<option value="code" ng-selected="topic === 'code'"> Code </option> 
+			<option value="finance" ng-selected="topic === 'finance'"> Finance </option> 
+			<option value="learn" ng-selected="topic === 'learn'"> Learning </option>
+			<option value="music" ng-selected="topic === 'music'"> Music </option>
+		</select>
+		<button ng-click="addTask()" ng-disabled="!canAdd()" class="btn btn-success btn-sm">
+			<span class="glyphicon glyphicon-plus"></span> {{action}}
+		</button>
+	</form>
+</div>

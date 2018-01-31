@@ -13,7 +13,7 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/list', function(req, res) {
+router.get('/list', function(req, res, next) {
 	getModel().list(function(err, entities) {
 		if (err) {
 			next(err);
@@ -23,14 +23,36 @@ router.get('/list', function(req, res) {
 	});
 });
 
-router.post('/create', function(req, res) {
-	const data = req.body;
-	getModel().create(data, function(err) {
+router.post('/create', function(req, res, next) {
+	const task = req.body;
+	getModel().create(task, function(err) {
 		if (err) {
 			next(err);
 			return;
 		}
-		res.json({ msg: 'success' });
+		res.json({ msg: 'Create successful!' });
+	});
+});
+
+router.post('/update', function(req, res, next) {
+	const {id, task} = req.body;
+	getModel().update(id, task, function(err) {
+		if (err) {
+			next(err);
+			return;
+		}
+		res.json({ msg: 'Update successful!' });
+	});
+});
+
+router.post('/delete', function(req, res, next) {
+	const id = req.body;
+	getModel().delete(id, function(err) {
+		if (err) {
+			next(err);
+			return;
+		}
+		res.json({ msg: 'Delete successful!' });
 	});
 });
 

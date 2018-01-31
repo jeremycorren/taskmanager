@@ -1,0 +1,32 @@
+<div class="container">
+	<p ng-if="!hasTasks()">
+		<a ui-sref="list.create" id="create-link">Create</a> a new task.
+	</p>
+	<div ng-if="hasTasks()">
+		<div class="row">
+				<div class="col-md-1">
+					<button ui-sref="list.create" class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span> Add
+					</button>
+				</div>
+				<div class="col-md-5">
+					<input ng-model="keyword" uib-typeahead="task.name for task in tasks" type="text" placeholder="Enter a filter query" class="task form-control form-group"></input>
+				</div>
+		</div>
+		<div  class="row">
+			<div class="col-md-2">
+				<div ng-if="hasTasks()" id="detail-list" class="end-space">
+					<div id="list-group">
+						<button ui-sref="list.view" ng-repeat="task in tasks | filter: keyword" ng-click="selectDetail($index, task)" ng-class="{active: $index == selected}" class="list-group-item">
+							<div class="bold">{{task.name}}</div>
+							<div>{{task.updated}}</div>
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div ui-view></div>
+			</div>
+		</div>
+	</div>
+</div>

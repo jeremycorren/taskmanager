@@ -1,5 +1,5 @@
 /**
- * Server
+ * App Server
  */
 
 const express  = require('express');
@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/public'));
 app.use('/api', require('./app/routes.js'));
 
 app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
+  res.sendFile(__dirname + '/public/views/index.html');
 });
 
 app.listen(port, function() {
